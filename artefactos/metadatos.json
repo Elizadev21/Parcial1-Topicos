@@ -1,0 +1,18 @@
+{
+  "fecha_generacion": "2026-10-27",
+  "clases": [
+    "negativo",
+    "neutro",
+    "positivo"
+  ],
+  "semilla": 42,
+  "tamano_prueba": 0.2,
+  "registros_originales": 1816,
+  "registros_sin_duplicados": 1792,
+  "n_train": 1433,
+  "n_test": 359,
+  "n_terminos_tfidf": 15485,
+  "version_scikit_learn": "1.8.0",
+  "version_pandas": "3.0.2",
+  "version_python": "3.12.3"
+}
