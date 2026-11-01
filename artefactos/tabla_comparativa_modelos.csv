@@ -1,0 +1,4 @@
+Modelo,Accuracy,F1 macro,Desv. F1 macro,F1 neutro,Recall neutro,Tiempo CV (s)
+Línea base,0.5618,0.2398,0.0003,0.0,0.0,0.3897
+Regresión logística,0.8025,0.7191,0.0268,0.4403,0.4086,13.652
+Naive Bayes (Complement),0.8137,0.6489,0.0401,0.2122,0.1277,7.7819
