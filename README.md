@@ -115,3 +115,24 @@ haga `modelo.predict([texto])`.
   En la revisión manual, la clase neutra coincidió en solo un 80 % de los casos.
 - El corpus es de reseñas de hoteles de Granada (España): el modelo puede
   funcionar peor con otros dominios o con español de otras regiones.
+
+## Modelado (resultados)
+
+Notebook: `notebooks/modelado.ipynb`. Compara dos modelos sobre el pipeline de
+`preprocesamiento.py`, con validación cruzada estratificada de 5 particiones sobre `data/train.csv`.
+
+| Modelo | Accuracy (CV) | F1 macro (CV) | F1 neutro (CV) |
+|---|---|---|---|
+| Línea base (clase más frecuente) | 0,562 | 0,240 | 0,000 |
+| Regresión logística | 0,803 | 0,719 | 0,440 |
+| Naive Bayes (Complement) | 0,814 | 0,649 | 0,212 |
+
+**Modelo en producción: regresión logística** (`C=1`, unigramas + bigramas, `min_df=2`,
+`class_weight='balanced'`). Mayor F1 macro y mucho mejor recall en la clase neutra.
+
+Evaluación única en `data/test.csv`: accuracy 0,777 y F1 macro 0,686 (línea base: 0,563 y 0,240).
+F1 por clase: negativo 0,83, neutro 0,37, positivo 0,86. De los 80 errores, 69 involucran a la clase neutra.
+
+Artefactos generados por el notebook:
+- `artefactos/modelo.joblib`: pipeline completo (preprocesamiento + modelo), listo para `modelo.predict([texto])`.
+- `artefactos/metricas_modelado.json` y `artefactos/tabla_comparativa_modelos.csv`: métricas para el backend y el informe.

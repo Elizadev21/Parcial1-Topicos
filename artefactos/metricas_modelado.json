@@ -1,0 +1,75 @@
+{
+  "modelo_en_produccion": "Regresión logística",
+  "mejores_parametros": {
+    "Regresión logística": {
+      "clf__C": "1",
+      "prep__tfidf__min_df": "2",
+      "prep__tfidf__ngram_range": "(1, 2)"
+    },
+    "Naive Bayes (Complement)": {
+      "clf__alpha": "0.1",
+      "prep__tfidf__min_df": "2",
+      "prep__tfidf__ngram_range": "(1, 2)"
+    }
+  },
+  "validacion_cruzada": [
+    {
+      "Modelo": "Línea base",
+      "Accuracy": 0.5618,
+      "F1 macro": 0.2398,
+      "Desv. F1 macro": 0.0003,
+      "F1 neutro": 0.0,
+      "Recall neutro": 0.0,
+      "Tiempo CV (s)": 0.3897
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Accuracy": 0.8025,
+      "F1 macro": 0.7191,
+      "Desv. F1 macro": 0.0268,
+      "F1 neutro": 0.4403,
+      "Recall neutro": 0.4086,
+      "Tiempo CV (s)": 13.652
+    },
+    {
+      "Modelo": "Naive Bayes (Complement)",
+      "Accuracy": 0.8137,
+      "F1 macro": 0.6489,
+      "Desv. F1 macro": 0.0401,
+      "F1 neutro": 0.2122,
+      "Recall neutro": 0.1277,
+      "Tiempo CV (s)": 7.7819
+    }
+  ],
+  "prueba": {
+    "accuracy": 0.7772,
+    "f1_macro": 0.6859,
+    "por_clase": {
+      "negativo": {
+        "precision": 0.8095,
+        "recall": 0.85,
+        "f1-score": 0.8293,
+        "support": 100.0
+      },
+      "neutro": {
+        "precision": 0.3846,
+        "recall": 0.3509,
+        "f1-score": 0.367,
+        "support": 57.0
+      },
+      "positivo": {
+        "precision": 0.8614,
+        "recall": 0.8614,
+        "f1-score": 0.8614,
+        "support": 202.0
+      }
+    }
+  },
+  "clases": [
+    "negativo",
+    "neutro",
+    "positivo"
+  ],
+  "semilla": 42,
+  "version_scikit_learn": "1.8.0"
+}
