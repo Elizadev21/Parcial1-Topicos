@@ -2,13 +2,13 @@
 from pathlib import Path
 import sys
 import pandas as pd
-BASE = Path(__file__).resolve().parent
+BASE = Path(__file__).resolve().parents[1]  # tests -> raíz del proyecto
 OUT = BASE / "resultados_nlp"
 required_files = [OUT/"comparacion_modelos_nlp.csv", OUT/"ejemplos_preprocesamiento.csv", OUT/"informe_comparaciones.md", OUT/"detalle_tfidf.csv"]
 missing = [p.name for p in required_files if not p.exists()]
 if missing:
     print("FALTAN ARCHIVOS:", ", ".join(missing))
-    print("Ejecuta primero: python experimentos_nlp.py y python demostracion_tecnicas_nlp.py")
+    print("Ejecuta primero: python -m src.nlp.experimentos_nlp y python -m src.nlp.demostracion_tecnicas_nlp")
     sys.exit(1)
 df = pd.read_csv(OUT/"comparacion_modelos_nlp.csv")
 required = {(m,n) for m in ("ninguno","stemming","lematizacion") for n in ("unigramas","unigramas_bigramas")}
@@ -19,7 +19,7 @@ failed = df[df["estado"] != "OK"]
 if not failed.empty:
     print("HAY CONFIGURACIONES NO COMPLETADAS:")
     print(failed[["metodo","representacion","estado"]].to_string(index=False))
-    print("Instala el modelo: python -m spacy download es_core_news_sm; luego vuelve a ejecutar experimentos_nlp.py")
+    print("Instala el modelo: python -m spacy download es_core_news_sm; luego vuelve a ejecutar python -m src.nlp.experimentos_nlp")
     sys.exit(1)
 for col in ["cv_f1_macro_media","test_f1_macro","test_accuracy"]:
     if df[col].isna().any():

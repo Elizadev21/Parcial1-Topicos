@@ -1,0 +1,11 @@
+# Dependencias mínimas para ejecutar la API en Docker.
+# scikit-learn, scipy, joblib y nltk deben coincidir con requirements.txt
+# (las versiones con las que se entrenó artefactos/modelo_final.joblib).
+numpy==2.5.4
+scipy==1.17.0
+scikit-learn==1.8.0
+joblib==1.5.3
+nltk==3.9.2
+fastapi==0.115.12
+uvicorn==0.34.2
+pydantic==2.14.2

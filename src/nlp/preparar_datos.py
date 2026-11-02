@@ -1,11 +1,11 @@
 """
-preparar_datos.py
-=================
+src/nlp/preparar_datos.py
+=========================
 Script REPRODUCIBLE del rol "Datos y NLP".
 
-Ejecutándolo (un solo comando, desde la carpeta del proyecto):
+Ejecutándolo (un solo comando, desde la RAÍZ del proyecto):
 
-    python preparar_datos.py
+    python -m src.nlp.preparar_datos
 
 recorre todo el camino  Datos -> Pipeline de NLP -> Artefactos:
 
@@ -31,10 +31,10 @@ import scipy.sparse as sp
 import sklearn
 from sklearn.model_selection import train_test_split
 
-from preprocesamiento import crear_preprocesador
+from src.nlp.preprocesamiento import crear_preprocesador
 
 # ----------------------------- Configuración -------------------------------
-BASE = Path(__file__).resolve().parent          # carpeta del proyecto
+BASE = Path(__file__).resolve().parents[2]       # src/nlp -> src -> raíz del proyecto
 DATA = BASE / "data"
 ARTEFACTOS = BASE / "artefactos"
 
@@ -51,7 +51,7 @@ def cargar_dataset() -> pd.DataFrame:
     """Paso 1 y 2: carga el CSV (regenerándolo desde el XML si hace falta) y valida."""
     if not CSV_COMPLETO.exists():
         print(f"[1] {CSV_COMPLETO.name} no existe: se genera desde {XML_CRUDO.name}")
-        from cargar_coah import cargar
+        from src.nlp.cargar_coah import cargar
         cargar(str(XML_CRUDO)).to_csv(CSV_COMPLETO, index=False)
     df = pd.read_csv(CSV_COMPLETO)
     print(f"[1] Dataset cargado: {len(df)} registros, columnas {list(df.columns)}")

@@ -1,5 +1,5 @@
 # Versiones fijadas para reproducibilidad de Datos y NLP
-pandas==2.2.3
+pandas==3.0.2
 scikit-learn==1.8.0
 scipy==1.17.0
 joblib==1.5.3
@@ -9,3 +9,5 @@ openpyxl==3.1.5
 jupyter==1.1.1
 matplotlib==3.11.2
 matplotlib-inline==0.2.2
+# Modelo español de spaCy (lematización en src/nlp/experimentos_nlp.py)
+es_core_news_sm @ https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.8.0/es_core_news_sm-3.8.0-py3-none-any.whl

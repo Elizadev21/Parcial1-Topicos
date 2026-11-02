@@ -5,7 +5,7 @@ TF-IDF unigramas frente a unigramas+bigrams; baseline de clasificación Logistic
 La validación cruzada usa SOLO train.csv. test.csv se evalúa una vez por configuración.
 
 Uso:
-  python experimentos_nlp.py
+  python -m src.nlp.experimentos_nlp
 Para habilitar lematización instalar el modelo español:
   python -m spacy download es_core_news_sm
 """
@@ -21,9 +21,9 @@ from sklearn.model_selection import StratifiedKFold, cross_validate
 from sklearn.metrics import accuracy_score, f1_score, classification_report, confusion_matrix
 from nltk.stem.snowball import SnowballStemmer
 import spacy
-from preprocesamiento import normalizar, STOPWORDS_ES
+from src.nlp.preprocesamiento import normalizar, STOPWORDS_ES
 
-BASE = Path(__file__).resolve().parent
+BASE = Path(__file__).resolve().parents[2]  # raíz del proyecto
 DATA = BASE / 'data'
 OUT = BASE / 'resultados_nlp'
 SEED = 42
@@ -66,7 +66,7 @@ def main():
     OUT.mkdir(exist_ok=True)
     train_path, test_path = DATA/'train.csv', DATA/'test.csv'
     if not train_path.exists() or not test_path.exists():
-        raise FileNotFoundError('No encuentro data/train.csv y data/test.csv. Ejecuta primero: python preparar_datos.py')
+        raise FileNotFoundError('No encuentro data/train.csv y data/test.csv. Ejecuta primero: python -m src.nlp.preparar_datos')
     train, test = pd.read_csv(train_path), pd.read_csv(test_path)
     required={'texto','sentimiento'}
     if not required.issubset(train.columns) or not required.issubset(test.columns):

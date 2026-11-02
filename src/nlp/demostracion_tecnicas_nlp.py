@@ -8,9 +8,9 @@ import pandas as pd
 import spacy
 from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
-from preprocesamiento import normalizar, STOPWORDS_ES
+from src.nlp.preprocesamiento import normalizar, STOPWORDS_ES
 
-BASE = Path(__file__).resolve().parent
+BASE = Path(__file__).resolve().parents[2]  # raíz del proyecto
 OUT = BASE / "resultados_nlp"
 OUT.mkdir(exist_ok=True)
 

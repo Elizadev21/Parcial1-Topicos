@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/* Paleta y tipografías al estilo de la plantilla iPortfolio (BootstrapMade).
+   Generan clases como bg-lateral, text-acento, font-titulo o bg-negativo/15. */
+@theme {
+  --color-acento: #149ddd;
+  --color-acento-oscuro: #0e7fb4;
+  --color-lateral: #040b14;
+  --color-lateral-suave: #212431;
+  --color-lateral-borde: #2c2f3f;
+  --color-lateral-texto: #a8a9b4;
+  --color-titulo: #173b6c;
+  --color-fondo-alt: #f5f8fd;
+  --color-negativo: #d1493f;
+  --color-neutro: #c99226;
+  --color-positivo: #2f9461;
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-titulo: "Raleway", ui-sans-serif, system-ui, sans-serif;
+  --font-menu: "Poppins", ui-sans-serif, system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+/* Cursor parpadeante del texto que se escribe solo en la portada */
+@keyframes parpadeo { 50% { opacity: 0; } }
+.cursor-escritura { animation: parpadeo 1s step-end infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cursor-escritura { animation: none; }
+}
