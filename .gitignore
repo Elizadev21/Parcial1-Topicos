@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Entornos virtuales
+.venv*/
+venv*/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporales de Office (p. ej. al abrir muestra_etiquetas.xlsx)
+~$*

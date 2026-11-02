@@ -29,9 +29,13 @@ artefactos/
   X_train_tfidf.npz       Matriz TF-IDF de entrenamiento (comodidad)
   X_test_tfidf.npz        Matriz TF-IDF de prueba (comodidad)
   metadatos.json          Clases, semilla, tamaños, versiones de librerías
+  modelo_final.joblib     Pipeline completo (NLP + modelo) para el backend
+  metricas_modelado.json  Métricas de validación cruzada y prueba
+  tabla_comparativa_modelos.csv  Comparación de modelos
 notebooks/
   eda.ipynb               Análisis exploratorio
   division_desbalance.ipynb  Duplicados, división, desbalance (prueba de concepto)
+  modelado.ipynb          Entrenamiento, comparación y evaluación de modelos
 muestra_etiquetas.xlsx    Revisión manual de 60 reseñas (90 % de coincidencia)
 ```
 
@@ -90,7 +94,7 @@ print(cross_val_score(modelo, X, y, cv=cv, scoring="f1_macro").mean())
 ### Qué debe entregar Modelado para el backend
 
 Un **único** pipeline completo (preprocesamiento + mejor modelo) guardado con
-`joblib.dump(modelo, "artefactos/modelo.joblib")`, de modo que el backend solo
+`joblib.dump(modelo, "artefactos/modelo_final.joblib")`, de modo que el backend solo
 haga `modelo.predict([texto])`.
 
 ## Para el Backend
@@ -134,5 +138,5 @@ Evaluación única en `data/test.csv`: accuracy 0,777 y F1 macro 0,686 (línea b
 F1 por clase: negativo 0,83, neutro 0,37, positivo 0,86. De los 80 errores, 69 involucran a la clase neutra.
 
 Artefactos generados por el notebook:
-- `artefactos/modelo.joblib`: pipeline completo (preprocesamiento + modelo), listo para `modelo.predict([texto])`.
+- `artefactos/modelo_final.joblib`: pipeline completo (preprocesamiento + modelo), listo para `modelo.predict([texto])`.
 - `artefactos/metricas_modelado.json` y `artefactos/tabla_comparativa_modelos.csv`: métricas para el backend y el informe.
