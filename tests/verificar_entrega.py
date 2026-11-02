@@ -1,10 +1,10 @@
 """
-verificar_entrega.py
-====================
+tests/verificar_entrega.py
+==========================
 Comprueba que la entrega "Datos y NLP" está completa y consistente.
-Se ejecuta DESPUÉS de preparar_datos.py:
+Se ejecuta DESPUÉS de src/nlp/preparar_datos.py, desde la raíz del proyecto:
 
-    python verificar_entrega.py
+    python -m tests.verificar_entrega
 
 No evalúa ningún modelo ni toca la partición de prueba para medir rendimiento
 (esa evaluación es responsabilidad del rol de Modelado).
@@ -17,7 +17,7 @@ import numpy as np
 import pandas as pd
 import scipy.sparse as sp
 
-BASE = Path(__file__).resolve().parent
+BASE = Path(__file__).resolve().parents[1]  # tests -> raíz del proyecto
 DATA, ART = BASE / "data", BASE / "artefactos"
 
 ARCHIVOS = [

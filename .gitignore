@@ -17,3 +17,8 @@ Thumbs.db
 
 # Temporales de Office (p. ej. al abrir muestra_etiquetas.xlsx)
 ~$*
+
+# Frontend
+node_modules/
+dist/
+.pytest_cache/

@@ -3,12 +3,12 @@
   "mejores_parametros": {
     "Regresión logística": {
       "clf__C": "1",
-      "prep__tfidf__min_df": "2",
-      "prep__tfidf__ngram_range": "(1, 2)"
+      "prep__tfidf__min_df": "1",
+      "prep__tfidf__ngram_range": "(1, 1)"
     },
     "Naive Bayes (Complement)": {
       "clf__alpha": "0.1",
-      "prep__tfidf__min_df": "2",
+      "prep__tfidf__min_df": "3",
       "prep__tfidf__ngram_range": "(1, 2)"
     }
   },
@@ -20,47 +20,47 @@
       "Desv. F1 macro": 0.0003,
       "F1 neutro": 0.0,
       "Recall neutro": 0.0,
-      "Tiempo CV (s)": 0.3897
+      "Tiempo CV (s)": 0.0395
     },
     {
       "Modelo": "Regresión logística",
-      "Accuracy": 0.8025,
-      "F1 macro": 0.7191,
-      "Desv. F1 macro": 0.0268,
-      "F1 neutro": 0.4403,
-      "Recall neutro": 0.4086,
-      "Tiempo CV (s)": 13.652
+      "Accuracy": 0.7942,
+      "F1 macro": 0.7202,
+      "Desv. F1 macro": 0.0241,
+      "F1 neutro": 0.4455,
+      "Recall neutro": 0.4566,
+      "Tiempo CV (s)": 18.0723
     },
     {
       "Modelo": "Naive Bayes (Complement)",
-      "Accuracy": 0.8137,
-      "F1 macro": 0.6489,
-      "Desv. F1 macro": 0.0401,
-      "F1 neutro": 0.2122,
-      "Recall neutro": 0.1277,
-      "Tiempo CV (s)": 7.7819
+      "Accuracy": 0.8116,
+      "F1 macro": 0.6505,
+      "Desv. F1 macro": 0.0368,
+      "F1 neutro": 0.2272,
+      "Recall neutro": 0.1365,
+      "Tiempo CV (s)": 5.6289
     }
   ],
   "prueba": {
-    "accuracy": 0.7772,
-    "f1_macro": 0.6859,
+    "accuracy": 0.7855,
+    "f1_macro": 0.7068,
     "por_clase": {
       "negativo": {
-        "precision": 0.8095,
-        "recall": 0.85,
-        "f1-score": 0.8293,
+        "precision": 0.7963,
+        "recall": 0.86,
+        "f1-score": 0.8269,
         "support": 100.0
       },
       "neutro": {
-        "precision": 0.3846,
-        "recall": 0.3509,
-        "f1-score": 0.367,
+        "precision": 0.3968,
+        "recall": 0.4386,
+        "f1-score": 0.4167,
         "support": 57.0
       },
       "positivo": {
-        "precision": 0.8614,
-        "recall": 0.8614,
-        "f1-score": 0.8614,
+        "precision": 0.9096,
+        "recall": 0.8465,
+        "f1-score": 0.8769,
         "support": 202.0
       }
     }

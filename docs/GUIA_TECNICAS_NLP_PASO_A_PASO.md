@@ -5,23 +5,24 @@
 
 ## 1. Cómo ejecutar
 
-Abre PowerShell o la terminal en esta carpeta (`Parcial1-topicos`) y ejecuta:
+Abre PowerShell o la terminal en la raíz del proyecto y ejecuta:
 
 ```bash
 python -m venv .venv
 .venv\\Scripts\\activate
 python -m pip install -r requirements.txt
 python -m spacy download es_core_news_sm
-python preparar_datos.py
-python experimentos_nlp.py
-python verificar_experimentos_nlp.py
+python -m src.nlp.preparar_datos
+python -m src.nlp.experimentos_nlp
+python -m src.nlp.demostracion_tecnicas_nlp
+python -m tests.verificar_experimentos_nlp
 ```
 
 En Windows, si ya existe el entorno virtual, no necesitas crearlo de nuevo. El paso de descargar `es_core_news_sm` es necesario para la lematización.
 
 ## 2. Qué se genera
 
-Al ejecutar `experimentos_nlp.py` se crea la carpeta `resultados_nlp/` con:
+Al ejecutar `src/nlp/experimentos_nlp.py` se crea la carpeta `resultados_nlp/` con:
 
 - `ejemplos_preprocesamiento.csv`: ejemplo por ejemplo, desde el texto original hasta los tokens, stopwords, stemming y lematización.
 - `comparacion_modelos_nlp.csv`: resultados numéricos de las seis combinaciones comparadas.
@@ -50,7 +51,7 @@ En el pipeline, `TfidfVectorizer` de scikit-learn tokeniza automáticamente usan
 
 **Qué hace:** quita palabras muy comunes que suelen aportar poco, como artículos o algunas preposiciones.
 
-**Decisión importante:** no se elimina `no`, porque `me gusta` y `no me gusta` significan cosas opuestas. También se preservan `sin`, `nada`, `nunca`, `jamás`, `tampoco`, `muy`, `poco`, `pero` y otras palabras que pueden cambiar el sentimiento. La lista exacta está en `preprocesamiento.py`, en `STOPWORDS_ES`.
+**Decisión importante:** no se elimina `no`, porque `me gusta` y `no me gusta` significan cosas opuestas. También se preservan `sin`, `nada`, `nunca`, `jamás`, `tampoco`, `muy`, `poco`, `pero` y otras palabras que pueden cambiar el sentimiento. La lista exacta está en `src/nlp/preprocesamiento.py`, en `STOPWORDS_ES`.
 
 El CSV de ejemplos muestra los tokens antes y después de quitar stopwords. La lista se aplica después de normalizar el texto.
 
@@ -96,7 +97,7 @@ F1 macro calcula el F1 de cada clase y promedia dando el mismo peso a cada una; 
 
 ## 5. Qué comprueba el verificador
 
-`python verificar_experimentos_nlp.py` verifica que existan los archivos de resultados, estén las seis combinaciones y tengan métricas válidas. Si indica que falta una configuración o que la lematización está pendiente, revisa la instalación del modelo español y vuelve a ejecutar `python experimentos_nlp.py`.
+`python -m tests.verificar_experimentos_nlp` verifica que existan los archivos de resultados, estén las seis combinaciones y tengan métricas válidas. Si indica que falta una configuración o que la lematización está pendiente, revisa la instalación del modelo español y vuelve a ejecutar `python -m src.nlp.experimentos_nlp`.
 
 ## 6. Alcance y límites
 
