@@ -36,7 +36,7 @@ src/
 api/                      Backend FastAPI (salud, predecir, preprocesar, métricas) y su Dockerfile
 frontend/                 Interfaz web React + Tailwind CSS (Vite) y su Dockerfile con nginx
 tests/                    Pruebas (pytest) y scripts de verificación
-docs/                     Guía de técnicas NLP y capturas (informe técnico)
+docs/                     Informe técnico (informe_tecnico.md), guía de técnicas NLP y capturas
 artefactos/               Salidas: preprocesador, matrices TF-IDF, modelo final y métricas
 resultados_nlp/           Salidas de los experimentos de NLP
 docker-compose.yml        Levanta API + frontend
