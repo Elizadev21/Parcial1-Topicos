@@ -1,0 +1,31 @@
+# Despliegue en Render (plan gratuito) con un Blueprint:
+#   render.com -> New -> Blueprint -> elegir este repositorio.
+# Crea los mismos dos servicios que docker-compose.yml. Render define PORT y
+# los contenedores ya lo respetan.
+services:
+  # API FastAPI. Se construye desde la raíz del repositorio (necesita src/ y artefactos/).
+  - type: web
+    name: sentimiento-hotel-api
+    runtime: docker
+    plan: free
+    region: virginia
+    branch: main
+    dockerfilePath: ./api/Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/salud
+
+  # Frontend React servido por nginx, que redirige /api, /docs y /redoc a la API.
+  - type: web
+    name: sentimiento-hotel-web
+    runtime: docker
+    plan: free
+    region: virginia
+    branch: main
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    healthCheckPath: /
+    envVars:
+      # URL pública de la API, sin barra final. Si Render le asigna otra URL
+      # (porque el nombre ya estaba en uso), cámbiala aquí o en el panel.
+      - key: BACKEND_URL
+        value: https://sentimiento-hotel-api.onrender.com

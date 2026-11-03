@@ -40,6 +40,7 @@ docs/                     Informe técnico (informe_tecnico.md), guía de técni
 artefactos/               Salidas: preprocesador, matrices TF-IDF, modelo final y métricas
 resultados_nlp/           Salidas de los experimentos de NLP
 docker-compose.yml        Levanta API + frontend
+render.yaml               Despliegue en Render (Blueprint)
 requirements.txt          Dependencias
 ```
 
@@ -126,6 +127,19 @@ endpoint está en `/docs` (Swagger) y `/redoc`.
 
 En la nube, cada contenedor respeta la variable `PORT` de la plataforma y el
 frontend usa `BACKEND_URL` para saber dónde está la API.
+
+### Despliegue en Render
+
+`render.yaml` describe los dos servicios (plan gratuito):
+
+1. En [render.com](https://render.com): **New → Blueprint** y elegir este repositorio.
+2. Render construye `sentimiento-hotel-api` y `sentimiento-hotel-web` con sus Dockerfile.
+3. Abrir la URL del frontend (`https://sentimiento-hotel-web.onrender.com`).
+
+Si Render asigna a la API otra URL porque el nombre ya estaba en uso, hay que
+actualizar `BACKEND_URL` del frontend (en `render.yaml` o en el panel). En el plan
+gratuito los servicios se duermen tras 15 minutos sin uso; la primera visita tarda
+entre 30 y 60 segundos.
 
 ## Decisiones de preprocesamiento
 
