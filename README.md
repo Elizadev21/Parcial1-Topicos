@@ -2,9 +2,9 @@
 
 Tópicos Avanzados de Programación · UAGRM · Gestión 2-2026
 
-Este repositorio contiene la entrega del rol **Datos y NLP** (dataset, análisis
-exploratorio y pipeline de preprocesamiento). El rol **Modelado** (entrenamiento,
-ajuste y comparación de modelos) continúa a partir de aquí.
+1.- **Datos y NLP** (dataset, análisis
+exploratorio y pipeline de preprocesamiento).                                                                              2.- **Modelado** (entrenamiento,
+ajuste y comparación de modelos) 
 
 ```
 Datos  ->  Pipeline de NLP  ->  Modelos  ->  Artefactos  ->  Backend  ->  Frontend
@@ -63,17 +63,6 @@ solo con `python -m src.nlp.preparar_datos` y comprobar con `python -m tests.ver
 Con los mismos datos y versiones de librerías, el resultado es idéntico en cada
 ejecución (semilla fija = 42).
 
-## Para Modelado (contrato de entrega)
-
-| Qué | Dónde | Notas |
-|---|---|---|
-| Datos de entrenamiento | `data/train.csv` | Columnas: `id, rank, titulo, texto, sentimiento`. Entrada: `texto`. Etiqueta: `sentimiento`. |
-| Datos de prueba | `data/test.csv` | **No usar para ajustar ni elegir modelos.** Solo una evaluación final. |
-| Clases (orden fijo) | `artefactos/metadatos.json` | `negativo`, `neutro`, `positivo` |
-| Pipeline NLP | `src.nlp.preprocesamiento.crear_preprocesador()` | Normaliza el texto y aplica TF-IDF. |
-| Pipeline NLP ya ajustado | `artefactos/preprocesador.joblib` | Ajustado solo con train. |
-| Matrices TF-IDF | `artefactos/X_*_tfidf.npz` | Solo por comodidad. |
-
 Puntos a tener en cuenta:
 
 - **Desbalance:** positivo 56 %, negativo 28 %, neutro 16 %. En la prueba de
@@ -84,39 +73,6 @@ Puntos a tener en cuenta:
   nunca sobre `test.csv`.
 - **Sin fuga de información:** al validar, meter el preprocesador DENTRO del
   `Pipeline` (así el TF-IDF se reajusta en cada pliegue).
-
-### Ejemplo mínimo para empezar
-
-```python
-import pandas as pd
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import StratifiedKFold, cross_val_score
-from sklearn.pipeline import Pipeline
-from src.nlp.preprocesamiento import crear_preprocesador
-
-train = pd.read_csv("data/train.csv")
-X, y = train["texto"], train["sentimiento"]
-
-modelo = Pipeline(crear_preprocesador().steps + [
-    ("clf", LogisticRegression(max_iter=1000, class_weight="balanced", random_state=42)),
-])
-cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
-print(cross_val_score(modelo, X, y, cv=cv, scoring="f1_macro").mean())
-```
-
-### Qué debe entregar Modelado para el backend
-
-Un **único** pipeline completo (preprocesamiento + mejor modelo) guardado con
-`joblib.dump(modelo, "artefactos/modelo_final.joblib")`, de modo que el backend solo
-haga `modelo.predict([texto])`.
-
-## Para el Backend
-
-- Hace falta `src/nlp/preprocesamiento.py` importable (raíz del proyecto en el
-  PYTHONPATH): el archivo `.joblib` guarda una referencia a la clase `TextoNormalizador`.
-- Usar la **misma versión de scikit-learn** que figura en `artefactos/metadatos.json`.
-- El pipeline acepta texto crudo tal como lo escribe el usuario; el backend
-  debería rechazar textos vacíos antes de predecir.
 
 ## Aplicación web y Docker
 
