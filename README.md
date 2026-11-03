@@ -46,7 +46,7 @@ requirements.txt          Dependencias
 Todos los comandos se ejecutan **desde la raíz del proyecto**, como módulos
 (`python -m ...`), para que `src` sea importable.
 
-## Cómo reproducir todo
+## Empezando
 
 Con **un solo comando** se va desde los datos crudos (`data/corpus_coah.xml`)
 hasta los modelos guardados en `artefactos/`:
